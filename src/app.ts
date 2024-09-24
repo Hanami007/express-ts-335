@@ -1,23 +1,9 @@
-//import needed libraries
 import express from 'express';
-import * as bodyParser from "body-parser";
-import routes from "./routes";
+import productRouter from './routes/product.route';  // เส้นทางจริงไปยัง router ของคุณ
 
-// get express application
 const app = express();
-// body parser middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-// applying the routes to the basepath '/api'
-app.use("/api", routes);
 
-// Error handling middleware (optional)
-app.use((err: any, req: any, res: any, next: any) => {
-  console.error(err.stack);
-  res.status(500).send({
-    message: "Internal Server Error",
-    error: err.message || "Unknown error",
-  });
-});
+app.use(express.json()); // Middleware ที่จำเป็น
+app.use('/products', productRouter); // ใช้ router
 
 export default app;

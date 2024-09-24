@@ -4,12 +4,12 @@ import productRouter from "../routes/product.route";
 
 // Mock productController methods
 jest.mock("../controller/product.controller", () => ({
-  getAll: jest.fn((req, res) =>
-    res.status(200).send({
+  getAll: (req, res) => {
+    return res.status(200).send({
       message: "OK",
-      result: [{ id: 1, name: "Product 1" }],
-    })
-  ),
+      result: [{ id: 6604101335, name: "นายธราเทพ จันทร์ดำ" }],
+    });
+  },
   deleteById: jest.fn((req, res) => {
     const id = parseInt(req.params.id, 10);
     if (isNaN(id)) {
@@ -50,7 +50,7 @@ describe("Product Router", () => {
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
       message: "OK",
-      result: [{ id: 1, name: "Product 1" }],
+      result: [{ id: 6604101335, name: "นายธราเทพ จันทร์ดำ" }],
     });
   });
 
